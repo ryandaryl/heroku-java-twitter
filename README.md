@@ -1,7 +1,7 @@
-The starting point is the class TwitterGrapherBot. There you can modify the starting Twitter user.
+# Minimal Java web application
 
-Steps to install and run the demo:
+This application is based on Heroku Java Getting Started from [CircleCI](https://circleci.com/gh/heroku/java-getting-started), and uses the Spring web framework.
 
-git clone https://github.com/palmerabollo/test-twitter-graph.git
-mvn install
-mvn exec:java -Dexec.mainClass=es.guido.twitter.graph.TwitterGrapherBot -Dexec.classpathScope=compile
+## Deploy to Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
