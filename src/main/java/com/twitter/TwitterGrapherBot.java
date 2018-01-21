@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class TwitterGrapherBot {
     private static final String DEFAULT_STARTING_NODE = "palmerabollo";
-    private static final int MAX_DEPTH = 1;
+    private static final int MAX_DEPTH = 2;
     
     private static final String EXPORT_FORMAT = "pdf";
     private static final String EXPORT_PATH = System.getProperty("java.io.tmpdir") + "/twitter-graph.pdf";

@@ -49,10 +49,10 @@ public class TwitterTraverser {
     }
     
     public void traverse() {
-        traverse(startingNode, 0); // recursive algorithm
+        traverse(startingNode, 0, (List) java.util.Collections.emptyList()); // recursive algorithm
     }
     
-    private void traverse(String node, int depth) {
+    private void traverse(String node, int depth, List known_names) {
         System.out.println("Visit " + node);
         
         if (ALREADY_TRAVERSED.contains(node)) {
@@ -71,19 +71,13 @@ public class TwitterTraverser {
         System.out.println("\tFriends for " + node + " / depth = " + depth + " / request count = " + twitter.getRequestCount());
         
         for (TwitterProfile friend : friends) {
-            builder.addDirectedRelation(node, friend.getScreenName());
-            traverse(friend.getScreenName(), depth + 1);
+            System.out.println(friend.getScreenName());
+            if (depth == 0 || known_names.contains(friend)) {
+                 builder.addDirectedRelation(node, friend.getScreenName());
+                 traverse(friend.getScreenName(), depth + 1, friends);
+            }
         }
-    
-        /**
-        System.out.println("\tFollowers " + node + " / depth = " + depth + " / req = " + twitter.getRequests());
-        List<TwitterProfile> followers = twitter.getFollowers(node);
-        for (TwitterProfile follower : followers) {
-            builder.addDirectedRelation(follower.getScreenName(), node);
-            traverse(follower.getScreenName(), depth + 1);
-        }
-        */
-        
+            
         System.out.println("End " + node + " / depth = " + depth);
     }
     
