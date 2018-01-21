@@ -53,27 +53,22 @@ public class TwitterTraverser {
     }
     
     private void traverse(String node, int depth) {
-        System.out.println("Traverse " + node + " / depth = " + depth);
-        
-        List<TwitterProfile> followers = twitter.getFollowers(node);
-        System.out.println("\tFollowers " + node + " / size = " + followers.size() + " / depth = " + depth + " / req = " + twitter.getRequestCount());
-        builder.setSize(node, followers.size());
-        builder.setColor(node, 0, 0, 0.9f);
-        
-        if (depth == maxDepth) {
-            System.out.println("Max depth reached " + node + " / " + depth);
-            return;
-        }
+        System.out.println("Visit " + node);
         
         if (ALREADY_TRAVERSED.contains(node)) {
-            System.out.println("Node already traversed " + node + " / " + depth);
+            System.out.println("Node already traversed " + node);
             return;
         }
         
         ALREADY_TRAVERSED.add(node);
-        
+
+        if (depth == maxDepth) {
+            System.out.println("Max depth reached at " + node);
+            return;
+        }
+
         List<TwitterProfile> friends = twitter.getFriends(node);
-        System.out.println("\tFriends " + node + " / depth = " + depth + " / req = " + twitter.getRequestCount());
+        System.out.println("\tFriends for " + node + " / depth = " + depth + " / request count = " + twitter.getRequestCount());
         
         for (TwitterProfile friend : friends) {
             builder.addDirectedRelation(node, friend.getScreenName());

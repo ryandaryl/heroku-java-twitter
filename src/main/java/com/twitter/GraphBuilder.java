@@ -19,6 +19,7 @@ package es.guido.twitter.graph;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.io.File;
 import java.io.OutputStream;
 import java.util.concurrent.TimeUnit;
 
@@ -100,11 +101,8 @@ public class GraphBuilder {
         Workspace workspace = pc.getCurrentWorkspace();
         
         ExportController ec = Lookup.getDefault().lookup(ExportController.class);
-        PDFExporter pdfExporter = (PDFExporter) ec.getExporter(format);
-        pdfExporter.setPageSize(PageSize.A0);
-        pdfExporter.setWorkspace(workspace);
-        ec.exportStream(os, pdfExporter);
-        os.flush();
+        ec.exportFile(new File("twitter-graph.gexf"));
+        System.out.println("my export");
     }
 
     private void configureLayout() {
