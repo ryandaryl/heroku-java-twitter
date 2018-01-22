@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 import java.util.Optional;
@@ -20,14 +21,13 @@ public class Main {
     SpringApplication.run(Main.class, args);
   }
 
-  @CrossOrigin(origins = "*")
   @RequestMapping(value={ "/", "/{twitterHandle}" })
-  String hello(Map<String, Object> model, @PathVariable Optional<String> twitterHandle) {
+  @CrossOrigin(origins = "*")
+  public @ResponseBody String hello(@PathVariable Optional<String> twitterHandle) {
     String gexf = TwitterGrapherBot.getGraph(
         twitterHandle.isPresent() ? twitterHandle.get() : "springframework"
     );
-    model.put("mytext", gexf);
-    return "hello";
+    return gexf;
   }  
 
 }
