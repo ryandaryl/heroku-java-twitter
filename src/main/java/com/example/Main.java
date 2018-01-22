@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Map;
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class Main {
     SpringApplication.run(Main.class, args);
   }
 
+  @CrossOrigin(origins = "*")
   @RequestMapping(value={ "/", "/{twitterHandle}" })
   String hello(Map<String, Object> model, @PathVariable Optional<String> twitterHandle) {
     String gexf = TwitterGrapherBot.getGraph(
