@@ -80,6 +80,11 @@ public class GraphBuilder {
         node.setColor(new Color(r, g, b, (float)node.alpha()));
     }
     
+    public void setPosition(String idNode, float x, float y) {
+        Node node = findOrCreateNode(idNode);
+        node.setPosition(x, y, 0f);
+    }
+
     public void addDirectedRelation(String idSource, String idTarget) {
         addDirectedRelation(idSource, idTarget, 1f);
     }

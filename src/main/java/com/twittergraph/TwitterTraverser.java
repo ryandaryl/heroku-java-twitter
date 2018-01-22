@@ -36,6 +36,9 @@ public class TwitterTraverser {
     private final TwitterDecorator twitter;
     private final int maxDepth;
     private final String startingNode;
+    private int x;
+    private int y;
+    private final float scaleFactor = 5;
     
     public TwitterTraverser(String startingNode, int maxDepth) {
         this(startingNode, maxDepth, false);
@@ -50,6 +53,8 @@ public class TwitterTraverser {
     
     public void traverse() {
         traverse(startingNode, 0, (List) java.util.Collections.emptyList()); // recursive algorithm
+        x = 0;
+        y = 0;
     }
     
     private void traverse(String node, int depth, List known_names) {
@@ -62,12 +67,22 @@ public class TwitterTraverser {
         
         ALREADY_TRAVERSED.add(node);
 
+        builder.setSize(node, 1);
+        builder.setColor(node, 0, 0, 0.9f);
+        if (x < ((float) known_names.size() / 2)) {
+            builder.setPosition(node, x * scaleFactor + (float)0.1, -y * scaleFactor + (float)0.1);
+        } else {
+            builder.setPosition(node, -x * scaleFactor + (float)0.1, -y * scaleFactor + (float)0.1 + 10 * scaleFactor);
+        }
+        x++;
+        y++;
+
         if (depth == maxDepth) {
             System.out.println("Max depth reached at " + node);
             return;
         }
-        
-        int requestCount = (int)twitter.getRequestCount();        
+
+        int requestCount = (int) twitter.getRequestCount();              
         if (requestCount > 3) {
             System.out.println("No more requests allowed.");
             return;
