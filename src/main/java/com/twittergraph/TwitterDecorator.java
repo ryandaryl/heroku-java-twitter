@@ -37,10 +37,10 @@ public class TwitterDecorator {
     private Twitter twitter;
     private SerializableCache<List<TwitterProfile>> cache;
     
-    private String CONSUMER_KEY = "X7dXbRQBpFA0LTerDFA504YBP";
-    private String CONSUMER_SECRET = "8wH7x67sRwFIpaiMNOvbU5NTBGO2HgNM73GPcVDuwchZI2cmHG";
-    private String ACCESS_TOKEN = "862792470806933506-kVisAHICJfshPEwc7nTncmb5rxQgz19";
-    private String ACCESS_SECRET = "O3SF02zEs7crXyJ7QunJiCuqplAmUOmKRG7bytdPGbxx9";
+    private String CONSUMER_KEY = System.getenv("CONSUMER_KEY");
+    private String CONSUMER_SECRET = System.getenv("CONSUMER_SECRET");
+    private String ACCESS_TOKEN = System.getenv("ACCESS_TOKEN");
+    private String ACCESS_SECRET = System.getenv("ACCESS_SECRET");
     
     public TwitterDecorator() {
         this(false);

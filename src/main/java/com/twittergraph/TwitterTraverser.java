@@ -83,7 +83,7 @@ public class TwitterTraverser {
         }
 
         int requestCount = (int) twitter.getRequestCount();              
-        if (requestCount > 3) {
+        if (requestCount > 15) {
             System.out.println("No more requests allowed.");
             return;
         }
