@@ -18,7 +18,7 @@
 package com.twittergraph;
 
 public class TwitterGrapherBot {
-    private static final String DEFAULT_STARTING_NODE = "realfriendsband";
+    private static final String DEFAULT_STARTING_NODE = "palmerabollo";
     private static final int MAX_DEPTH = 2;
     
     private static final String EXPORT_FORMAT = "pdf";
